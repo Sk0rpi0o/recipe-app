@@ -5,9 +5,8 @@
 }
 
 body {
-
-  background-color: #8EC5FC;
-  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  background: rgb(231,228,229);
+  background: radial-gradient(circle, rgba(231,228,229,1) 0%, rgba(178,206,240,1) 61%);
 
   display: flex;
   align-items: center;
@@ -16,7 +15,6 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   min-height: 100vh;
-
 }
 
 img {
@@ -24,7 +22,6 @@ img {
 }
 
 .mobile-container {
-
   background-color: white;
   box-shadow: 0 0 10px 5px #3333331a;
   overflow: hidden;
@@ -42,8 +39,8 @@ header input {
   background-color: rgb(248, 248, 248);
   border: none;
   border-radius: 3px;
+  font-family: inherit;
   padding: 0.5rem 1rem;
-
 }
 
 header button {
@@ -55,7 +52,7 @@ header button {
 }
 
 .fav-container {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
   background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 }
@@ -84,7 +81,6 @@ header button {
 
 .fav-meals li span {
   font-size: .9rem;
-
 }
 
 /* Meal */
@@ -132,10 +128,9 @@ meal-body h4 {
   color: #aaa;
   cursor: pointer;
   font-size: 1.5rem;
-
 }
 
 .meal-body .fav-btn:active {
-  background-color: red;
-
+  background-image: url(images/heart.png);
 }
+

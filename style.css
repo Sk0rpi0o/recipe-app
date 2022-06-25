@@ -66,9 +66,26 @@ header button {
 }
 
 .fav-meals li {
+  position: relative;
   margin: 5px;
   width: 75px;
 }
+
+.fav-meals li .clear {
+  background-color: transparent;
+  position: absolute;
+  border: none;
+  top: -7px;
+  right: -7px;
+  font-size: 1.2rem;
+}
+
+.fav-meals li .clear img {
+  width: 10px;
+  height: 10px;
+  border: none;
+}
+
 
 .fav-meals li img {
   border: 2px solid #ffffff;

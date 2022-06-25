@@ -1,5 +1,8 @@
-const meals = document.getElementById("meals");
-const favoriteContainer = document.getElementById("fav-meals")
+const mealsEl = document.getElementById("meals");
+const favoriteContainer = document.getElementById("fav-meals");
+
+const searchTerm = document.getElementById("search-term");
+const searchBtn = document.getElementById("search");
 
 getRandomMeal();
 fetchFavMeals();
@@ -24,8 +27,15 @@ async function getMealById(id) {
 }
 
 async function getMealsBySearch(term) {
-  const meals = await 
+  const resp = await 
   fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + term);
+
+  const respData = await resp.json();
+  const meals = respData.meals;
+
+  console.log(meals);
+
+  return meals;
 }
 
 function addMeal(mealData, random = false) {
@@ -74,7 +84,7 @@ function addMeal(mealData, random = false) {
      fetchFavMeals();
 
     });
-  meals.appendChild(meal);
+  mealsEl.appendChild(meal);
 }
 // meal id section
 function addMealLS(mealId) {
@@ -144,7 +154,27 @@ function addMealFav(mealData) {
   });
 
   favoriteContainer.appendChild(favMeal);
-
-
 }
+
+// Search
+searchBtn.addEventListener('click', async () => {
+  // clean container
+  mealsEl.innerHTML = '';
+
+  const search = searchTerm.value;
+
+  console.log(await getMealsBySearch(search));
+
+  const meals = await getMealsBySearch(search);
+
+  if (meals) {
+    meals.forEach((meal) => {
+      addMeal(meal);
+    });
+  }
+});
+
+// Meal Info
+
+
 

@@ -22,6 +22,9 @@ async function getMealsBySearch(term) {
 }
 
 function addMeal(mealData, random = false) {
+
+  console.log(mealData);
+
   const meal = document.createElement("div");
   meal.classList.add("meal");
   
@@ -43,12 +46,53 @@ function addMeal(mealData, random = false) {
 
     <div class="meal-body">
       <h4>${mealData.strMeal}</h4>
-      <button class="fav-btn">
+      <button class="fav-btn" onclick="">
         <img src="images/heart-black.png" 
         alt="">
 
       </button>
     </div>
-  `
+  `;
+
+  const btn = meal.querySelector(".meal-body .fav-btn");
+    btn.addEventListener("click", () => {
+ //     if(btn.classList.contains("active")) {
+ //        removeMealLS(mealData.idMeal);
+ //        btn.classList.remove("active");
+ //     } else {
+ //       addMealLS(mealData.idMeal);
+ //       btn.classList.add("active");
+ //     }
+      btn.classList.toggle("active");
+    });
+  
   meals.appendChild(meal);
+}
+
+// meal id section
+
+function addMealLS(mealId) {
+  const mealIds = getMealsLS();
+
+  
+  localStorage.setItem("mealIds", JSON.stringify
+  ([...mealIds, mealId]));
+}
+
+function removeMealLS(mealId) {
+  const mealIds = getMealsLS();
+
+  localStorage.setItem(
+    "mealIds", 
+    JSON.stringify(mealIds.filter((id) => id !== mealId)));
+  
+}
+
+function getMealsFromLS() {
+  const mealIds = JSON.parse(localStorage.getItem
+  ("mealIds"));
+
+  console.log(mealIds);
+
+  return mealIds === null ? [] : mealIds;
 }

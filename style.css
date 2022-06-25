@@ -118,7 +118,7 @@ header button {
   padding: 1rem;
 }
 
-meal-body h4 {
+.meal-body h4 {
   margin: 0;
 }
 
@@ -130,7 +130,8 @@ meal-body h4 {
   font-size: 1.5rem;
 }
 
-.meal-body .fav-btn:active {
-  background-image: url(images/heart.png);
+.meal-body .fav-btn.active {
+  background-color: #E0C3FC;
+
 }
 

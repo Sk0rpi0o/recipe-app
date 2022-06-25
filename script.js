@@ -2,7 +2,7 @@ const mealsEl = document.getElementById("meals");
 const favoriteContainer = document.getElementById("fav-meals");
 const mealPopup = document.getElementById("meal-popup");
 const popupCloseBtn = document.getElementById("close-popup");
-
+const mealInfoEl = document.getElementById("meal-info");
 const searchTerm = document.getElementById("search-term");
 const searchBtn = document.getElementById("search");
 
@@ -82,10 +82,15 @@ function addMeal(mealData, random = false) {
        addMealLS(mealData.idMeal);
        btn.classList.add("active");
      }
-
      fetchFavMeals();
-
     });
+
+
+
+  meal.addEventListener("click", () => {
+    showMealInfo(mealData);
+  });
+
   mealsEl.appendChild(meal);
 }
 // meal id section
@@ -154,14 +159,46 @@ function addMealFav(mealData) {
 
     fetchFavMeals();
   });
-
   favoriteContainer.appendChild(favMeal);
 }
 
+function showMealInfo(mealData) {
+  // clean it up
+  mealInfoEl.innerHTML = '';
+  
+  // update the meal info
+  const mealEl = document.createElement("div");
+
+  mealEl.innerHTML = `
+  <h1>${mealData.strMeal}</h1>
+  <img 
+  src="${mealData.strMealThumb}" 
+  alt="${mealData.strMeal}">  
+  <p>${mealData.strInstructions}</p>
+  <li>${mealData.strIngredient1} / ${mealData.strMeasure1}</li>
+  <li>${mealData.strIngredient2} / ${mealData.strMeasure2}</li>
+  <li>${mealData.strIngredient3} / ${mealData.strMeasure3}</li>
+  <li>${mealData.strIngredient4} / ${mealData.strMeasure4}</li>
+  <li>${mealData.strIngredient5} / ${mealData.strMeasure5}</li>
+  <li>${mealData.strIngredient6} / ${mealData.strMeasure6}</li>
+  <li>${mealData.strIngredient7} / ${mealData.strMeasure7}</li>
+  <li>${mealData.strIngredient8} / ${mealData.strMeasure8}</li>
+  <li>${mealData.strIngredient9} / ${mealData.strMeasure9}</li>
+  <li>${mealData.strIngredient10} / ${mealData.strMeasure10}</li>
+  `
+
+  mealInfoEl.appendChild(mealEl);
+
+  // this should show popup
+  mealPopup.classList.remove("hidden");
+
+}
+
+
 // Search
-searchBtn.addEventListener('click', async () => {
+searchBtn.addEventListener("click", async () => {
   // clean container
-  mealsEl.innerHTML = '';
+  mealsEl.innerHTML = "";
 
   const search = searchTerm.value;
 
@@ -176,11 +213,9 @@ searchBtn.addEventListener('click', async () => {
   }
 });
 
-// Meal Info
 // Popup close
-
 popupCloseBtn.addEventListener("click", () => {
   mealPopup.classList.add("hidden");
 });
 
-
+// Meal Info

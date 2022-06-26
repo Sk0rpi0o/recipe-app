@@ -130,6 +130,8 @@ async function fetchFavMeals () {
     
     addMealFav(meal); 
   }
+
+  
   console.log(meals);
 }
 // add them to the screen 
@@ -140,6 +142,8 @@ function addMealFav(mealData) {
   console.log(mealData);
   const favMeal = document.createElement("li");
   
+
+
   favMeal.innerHTML = `
 <img 
     src="${mealData.strMealThumb}" 
@@ -159,33 +163,50 @@ function addMealFav(mealData) {
 
     fetchFavMeals();
   });
+
+  favMeal.addEventListener("click", () => {
+    showMealInfo(mealData);
+  });
+  
   favoriteContainer.appendChild(favMeal);
 }
 
 function showMealInfo(mealData) {
   // clean it up
   mealInfoEl.innerHTML = '';
-  
+
   // update the meal info
   const mealEl = document.createElement("div");
 
+  const ingredients = []; 
+
+  // get ingeidients and measurements
+  for (let i = 1; i < 20; i++) {
+    if(mealData["strIngredient" + i ]) {
+      ingredients.push(`${mealData["strIngredient" + i ]} 
+      / ${mealData["strMeasure" + i ]}`);
+     } else {
+        break;
+      }
+  }
+ 
   mealEl.innerHTML = `
-  <h1>${mealData.strMeal}</h1>
-  <img 
-  src="${mealData.strMealThumb}" 
-  alt="${mealData.strMeal}">  
-  <p>${mealData.strInstructions}</p>
-  <li>${mealData.strIngredient1} / ${mealData.strMeasure1}</li>
-  <li>${mealData.strIngredient2} / ${mealData.strMeasure2}</li>
-  <li>${mealData.strIngredient3} / ${mealData.strMeasure3}</li>
-  <li>${mealData.strIngredient4} / ${mealData.strMeasure4}</li>
-  <li>${mealData.strIngredient5} / ${mealData.strMeasure5}</li>
-  <li>${mealData.strIngredient6} / ${mealData.strMeasure6}</li>
-  <li>${mealData.strIngredient7} / ${mealData.strMeasure7}</li>
-  <li>${mealData.strIngredient8} / ${mealData.strMeasure8}</li>
-  <li>${mealData.strIngredient9} / ${mealData.strMeasure9}</li>
-  <li>${mealData.strIngredient10} / ${mealData.strMeasure10}</li>
-  `
+    <h1>${mealData.strMeal}</h1>
+    <img 
+    src="${mealData.strMealThumb}" 
+    alt="${mealData.strMeal}"/>  
+    <p>${mealData.strInstructions}</p>
+    <h3>Ingredients:</h3>
+    <ul>
+      ${ingredients
+        .map(
+          (ing) => `
+            <li>${ing}</li>   
+          `
+            )
+            .join("")}
+    </ul>
+  `;
 
   mealInfoEl.appendChild(mealEl);
 

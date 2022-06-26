@@ -66,6 +66,7 @@ header button {
 }
 
 .fav-meals li {
+  cursor: pointer;
   position: relative;
   margin: 5px;
   width: 75px;
@@ -109,8 +110,6 @@ header button {
   white-space: nowrap;
   width: 75px;
 }
-
-
 
 /* Meal */
 
@@ -196,11 +195,11 @@ header button {
   cursor: pointer;
   right: .5rem;
   top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.5rem; 
 }
 .popup .close-popup img {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 .popup h1 {
   text-align: center;

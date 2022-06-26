@@ -194,7 +194,8 @@ function showMealInfo(mealData) {
     <h1>${mealData.strMeal}</h1>
     <img 
     src="${mealData.strMealThumb}" 
-    alt="${mealData.strMeal}"/>  
+    alt="${mealData.strMeal}"/>
+    <h3>Directions</h3>
     <p>${mealData.strInstructions}</p>
     <h3>Ingredients:</h3>
     <ul>
